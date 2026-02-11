@@ -1,11 +1,13 @@
 from study import Study
 from food import Food
-from work import Work
+from job import Job
 from play import Play
-from sport import Sport
+from observer import Observable
+#from sport import Sport
 
-class Creature:
+class Creature(Observable):
     def __init__(self, name, happiness=50, intelligence=1, tiredness=30, hunger=30, health=100, state="Bébé", money=0, steps=0):
+      super().__init__()
       self.name = name
       self.state = state
       self.happiness = happiness
@@ -17,6 +19,9 @@ class Creature:
       self.money = money
       self.steps = steps
 
+    #Ajout de l'observateur pour la créature
+    def add_observer(self, observer):
+      super().add_observer(observer)
 
     #Fonction pour faire manger la créature
     def eat(self, food: Food):
@@ -24,6 +29,7 @@ class Creature:
       self.hunger + self.hunger + gain
       self.increase_steps()
       self.increase_happiness()
+      self.notify("eat", gain)
       return self.hunger
 
 
@@ -58,9 +64,11 @@ class Creature:
       # Dégradation de la vie
       self.increase_hunger(10)
 
-    #Fonction pour faire travailler la créature, plus la créature est intelligente, plus elle gagne de l'argent et du bonheur
-    def work(self, work: Work):
-      pass
+    #Fonction pour faire travailler la créature
+    def work(self, job: Job):
+      self.increase_money(job.salary)
+      self.increase_steps()
+      self.decrease_happiness(7)
 
     #Fonction pour dormir
     def sleep(self):
@@ -70,6 +78,12 @@ class Creature:
        self.increase_steps()
 
        self.increase_hunger(20)
+
+    #Fonction pour augmenter l'argent
+    def increase_money(self, amount):
+      self.money += amount
+      gain = amount / 100
+      self.increase_happiness(gain)
 
     #Fonction pour augmenter la faim
     def increase_hunger(self, amount):

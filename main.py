@@ -2,9 +2,12 @@ from factory import Factory
 import questionary
 
 from food import Food
+from job import Job
+from observer import Observer
 from study import Study
 
 creature = Factory().create_creature("Tom")
+creature.add_observer(Observer())
 
 def rules():
     print("Bienvenue dans le jeu de Tamagochi !")
@@ -33,7 +36,7 @@ elif creature.state == "Adulte":
 elif creature.state == "Vieux":
     choices.append("Faire du sport", "Travailler", "Se reposer")
 
-
+rules()
 while creature.is_alive():
     j= 1
     while j != 10:
@@ -49,8 +52,9 @@ while creature.is_alive():
         if action == "Manger":
             eat_action = questionary.select(
                 "Que voulez-vous lui faire manger ?",
-                choices=Food.get_foods_by_state(creature.state)
+                choices=[food.name for food in Food.get_foods_by_state(creature.state)]
             ).ask()
+            eat_action = next(food for food in Food.get_foods_by_state(creature.state) if food.name == eat_action)
             creature.eat(eat_action)
         #Action Dormir
         elif action == "Dormir":
@@ -59,12 +63,20 @@ while creature.is_alive():
         elif action == "Étudier":
             study_action = questionary.select(
                 "Que veux-tu qu'il étudie ?",
-                choices=Study.get_studies_by_state(creature.state)
+                choices=[study.name for study in Study.get_studies_by_state(creature.state)]
             ).ask()
+            study_action = next(study for study in Study.get_studies_by_state(creature.state) if study.name == study_action)
             creature.study(study_action)
         #Action Jouer
         elif action == "Jouer":
             pass
+        elif action == "Travailler":
+            job_action = questionary.select(
+                "Quel travail voulez-vous lui faire faire ?",
+                choices=[job.name for job in Job.get_jobs_by_state(creature.intelligence)]
+            ).ask()
+            job_action = next(job for job in Job.get_jobs_by_state(creature.intelligence) if job.name == job_action)
+            creature.work(job_action)
         #Action Faire du sport
         elif action == "Faire du sport":
             pass
