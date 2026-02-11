@@ -1,27 +1,27 @@
 class Study:
-    def __init__(self, name, level=1, gain=100):
+    def __init__(self, name, gain=100, intelligence=1):
         self.name = name
-        self.level = level
         self.gain = gain
+        self.intelligence = intelligence
 
 #Création
     #Bébé
     #   Niveau 1
-formes = Study("Formes", 1, 20)
-chiffres = Study("Chiffres", 1, 20)
+formes = Study("Formes", 0, 20)
+chiffres = Study("Chiffres", 0, 20)
     #Enfant
     #   Niveau 2
-lecture = Study("Lecture", 2, 20)
-ecriture = Study("Ecriture", 2, 20)
+lecture = Study("Lecture", 20, )
+ecriture = Study("Ecriture", 20, 20)
     #   Niveau 3
-geographie = Study("Géographie", 3, 30)
-sciences = Study("Sciences", 3, 30)
-maths = Study("Maths", 3, 30)
-histoire = Study("Histoire", 3, 30)
+geographie = Study("Géographie", 30, 30)
+sciences = Study("Sciences", 30, 30)
+maths = Study("Maths", 30, 30)
+histoire = Study("Histoire", 30, 30)
     #Adulte
     #   Niveau 4
-philosophie = Study("Philosophie", 4, 40)
-psychologie = Study("Psychologie", 4, 40)
-sociologie = Study("Sociologie", 4, 40)
-economies = Study("Economies", 4, 40)
-informatique = Study("Informatique", 4, 40)
+philosophie = Study("Philosophie", 40, 40)
+psychologie = Study("Psychologie", 40, 40)
+sociologie = Study("Sociologie", 40, 40)
+economies = Study("Economies", 40, 40)
+informatique = Study("Informatique", 40, 40)

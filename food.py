@@ -1,33 +1,30 @@
 class Food:
-    def __init__(self, name, type, effect=None, gain=100):
+    def __init__(self, name, type, goodEffect=None, badEffect=None, money=10, gain=100):
         self.name = name
         self.type = type
         self.gain = gain
-        self.effect = effect
+        self.money = money
+        self.goodEffect = goodEffect
+        self.badEffect = badEffect
 
 
 #Création de nourriture
     #Bébé
-biberon = Food("Biberon", 1, gain=75, effect="x")
+biberon = Food("Biberon", 1, gain=75)
 
     #Enfant
-confitureFramboise = Food("Confiture de Framboise", 2, gain=50, effect="x")
-confitureFraise = Food("Confiture de Fraise", 2, gain=50, effect="x")
-confiturePomme = Food("Confiture de Pomme", 2, gain=50, effect="x")
-confiturePoire = Food("Confiture de Poire", 2, gain=50, effect="x")
-confiturePeche = Food("Confiture de Pêche", 2, gain=50, effect="x")
+confitureFramboise = Food("Confiture de Framboise", 2, gain=50, goodEffect="Amélioration de l'étude", badEffect="Diminution du jeu")
+confitureFraise = Food("Confiture de Fraise", 2, gain=50, goodEffect="Amélioration de l'humeur", badEffect="Diminution de la santé")
+confiturePomme = Food("Confiture de Pomme", 2, gain=50, goodEffect="Amélioration du jeu", badEffect="Diminution de l'énergie")
+confiturePoire = Food("Confiture de Poire", 2, gain=50, goodEffect="Amélioration de la santé", badEffect="Diminution de l'humeur")
+confiturePeche = Food("Confiture de Pêche", 2, gain=50, goodEffect="Amélioration de l'énergie", badEffect="Diminution de l'étude")
 
     #Adulte
-croissant = Food("Croissant", 3, gain=50, effect="x")
-chocolat = Food("Chocolat", 3, gain=50, effect="x")
-tarte = Food("Tarte", 3, gain=50, effect="x")
-pomme = Food("Pomme", 3, gain=50, effect="x")
-poire = Food("Poire", 3, gain=50, effect="x")
+croissant = Food("Croissant", 3, gain=50, goodEffect="Amélioration de l'étude", badEffect="Diminution de la santé")
+chocolat = Food("Chocolat", 3, gain=50, goodEffect="Amélioration de l'humeur", badEffect="Diminution de l'énergie")
+tarte = Food("Tarte", 3, gain=50, goodEffect="Amélioration du jeu", badEffect="Diminution de l'étude")
+pomme = Food("Pomme", 3, gain=50, goodEffect="Amélioration de la santé", badEffect="Diminution de l'humeur")
+poire = Food("Poire", 3, gain=50, goodEffect="Amélioration de l'énergie", badEffect="Diminution de la santé")
 
     #Autre
-possionFaim = Food("Poisson Faim", 3, gain=50, effect="x")
-
-# favorite pour créature
-# nombre de récupération de nourriture
-# if nourriture favorite, +5 au gain de nourriture
-# certaine nourriture boost et d'autre réduise tel ou tel effet
+possionFaim = Food("Poisson Faim", 3, gain=100)
