@@ -5,7 +5,15 @@ class Food:
         self.gain = gain
         self.effect = effect
 
-
+    def get_foods_by_state(state):
+        if state == "Bébé":
+            return [biberon]
+        elif state == "Enfant":
+            return [confitureFramboise, confitureFraise, confiturePomme, confiturePoire, confiturePeche]
+        elif state == "Adulte":
+            return [croissant, chocolat, tarte, pomme, poire]
+        else:
+            return [possionFaim]
 #Création de nourriture
     #Bébé
 biberon = Food("Biberon", 1, gain=75, effect="x")
