@@ -30,11 +30,12 @@ confiturePoire = Food("Confiture de Poire", "Enfant", gain=50, goodEffect="Amél
 confiturePeche = Food("Confiture de Pêche", "Enfant", gain=50, goodEffect="Amélioration de l'énergie", badEffect="Diminution de l'étude")
 
     #Adulte
-croissant = Food("Croissant", "Adulte", gain=50, goodEffect="Amélioration de l'étude", badEffect="Diminution de la santé")
-chocolat = Food("Chocolat", "Adulte", gain=50, goodEffect="Amélioration de l'humeur", badEffect="Diminution de l'énergie")
+croissant = Food("Croissant", "Adulte", gain=25, goodEffect="Amélioration de l'étude", badEffect="Diminution de la santé")
+chocolat = Food("Chocolat", "Adulte", gain=25, goodEffect="Amélioration de l'humeur", badEffect="Diminution de l'énergie")
 tarte = Food("Tarte", "Adulte", gain=50, goodEffect="Amélioration du jeu", badEffect="Diminution de l'étude")
-pomme = Food("Pomme", "Adulte", gain=50, goodEffect="Amélioration de la santé", badEffect="Diminution de l'humeur")
-poire = Food("Poire", "Adulte", gain=50, goodEffect="Amélioration de l'énergie", badEffect="Diminution de la santé")
+bolonise = Food("Bolonièse", "Adulte", gain=50, goodEffect="Amélioration de la santé", badEffect="Diminution de l'humeur")
+pomme = Food("Pomme", "Adulte", gain=25, goodEffect="Amélioration de la santé", badEffect="Diminution de l'humeur")
+poire = Food("Poire", "Adulte", gain=25, goodEffect="Amélioration de l'énergie", badEffect="Diminution de la santé")
 
     #Autre
 possionFaim = Food("Poisson Faim", gain=100)
