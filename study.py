@@ -4,6 +4,16 @@ class Study:
         self.gain = gain
         self.intelligence = intelligence
 
+    def get_studies_by_state(state):
+        if state == "Bébé":
+            return [formes, chiffres]
+        elif state == "Enfant":
+            return [lecture, ecriture]
+        elif state == "Adulte":
+            return [philosophie, psychologie, sociologie, economies, informatique]
+        else:
+            return []
+
 #Création
     #Bébé
     #   Niveau 1
