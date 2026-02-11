@@ -17,20 +17,20 @@ class Study:
 
 #Création d'études
     #Bébé
-formes = Study("Formes", "Bébé", 20, 0)
-chiffres = Study("Chiffres", "Bébé", 20, 0)
+formes = Study("Formes", "Bébé", 2, 0)
+chiffres = Study("Chiffres", "Bébé", 2, 0)
     #Enfant
-lecture = Study("Lecture", "Enfant", 30, 0)
-ecriture = Study("Ecriture", "Enfant", 30, 0)
+lecture = Study("Lecture", "Enfant", 5, 0)
+ecriture = Study("Ecriture", "Enfant", 5, 0)
 
-geographie = Study("Géographie", "Enfant", 40, 50)
-sciences = Study("Sciences", "Enfant", 40, 50)
-maths = Study("Maths", "Enfant", 40, 50)
-histoire = Study("Histoire", "Enfant", 40, 50)
+geographie = Study("Géographie", "Enfant", 8, 10)
+sciences = Study("Sciences", "Enfant", 8, 10)
+maths = Study("Maths", "Enfant", 8, 10)
+histoire = Study("Histoire", "Enfant", 8, 10)
     #Adulte
-philosophie = Study("Philosophie", "Adulte", 40, 50)
-psychologie = Study("Psychologie", "Adulte", 40, 50)
-sociologie = Study("Sociologie", "Adulte", 70, 100)
-economies = Study("Economies", "Adulte", 80, 120)
-informatique = Study("Informatique", "Adulte", 90, 140)
-gameDesign = Study("Game Design", "Adulte", 100, 150)
+philosophie = Study("Philosophie", "Adulte", 10, 15)
+psychologie = Study("Psychologie", "Adulte", 10, 15)
+sociologie = Study("Sociologie", "Adulte", 12, 30)
+economies = Study("Economies", "Adulte", 12, 30)
+informatique = Study("Informatique", "Adulte", 12, 30)
+gameDesign = Study("Game Design", "Adulte", 15, 50)

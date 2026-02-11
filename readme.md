@@ -11,3 +11,5 @@ Ces deux éléments auront un impact sur son moral.
 - Nourriture : un effet accompagne chaque nourriture, ils peuvent être positifs ou négatifs et tomberont de manière aléatoire. Cela aura des effets sur les différents éléments : étude, jeux...
 
 - Idée : class logement -> (chez les parents = random pour savoir s'il peut rester ou non une fois adulte), à la rue, appartement, maison, villa
+
+- Faire une gestion d'autorisation pour certaines actions : certaines ne seront faisables qu'une fois par jour ou s'il est trop fatigué, alors cette action n'est pas réalisable.
