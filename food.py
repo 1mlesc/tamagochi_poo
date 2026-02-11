@@ -37,4 +37,4 @@ pomme = Food("Pomme", "Adulte", gain=50, goodEffect="Amélioration de la santé"
 poire = Food("Poire", "Adulte", gain=50, goodEffect="Amélioration de l'énergie", badEffect="Diminution de la santé")
 
     #Autre
-possionFaim = Food("Poisson Faim", gain=100)
+possionFaim = Food("Poisson Faim","Vieux", gain=100)
