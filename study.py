@@ -22,7 +22,7 @@ chiffres = Study("Chiffres", "Bébé", 20, 0)
     #Enfant
 lecture = Study("Lecture", "Enfant", 30, 0)
 ecriture = Study("Ecriture", "Enfant", 30, 0)
-    #   Intelligence 50
+
 geographie = Study("Géographie", "Enfant", 40, 50)
 sciences = Study("Sciences", "Enfant", 40, 50)
 maths = Study("Maths", "Enfant", 40, 50)

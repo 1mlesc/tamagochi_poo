@@ -17,6 +17,7 @@ class Food:
             return [croissant, chocolat, tarte, pomme, poire]
         else:
             return [possionFaim]
+        
 #Création de nourriture
     #Bébé
 biberon = Food("Biberon", "Bébé", gain=75)
