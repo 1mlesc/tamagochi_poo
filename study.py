@@ -1,8 +1,9 @@
 class Study:
-    def __init__(self, name, gain=100, intelligence=1):
+    def __init__(self, name, state, gain=100, intelligence=1):
         self.name = name
         self.gain = gain
         self.intelligence = intelligence
+        self.state = state
 
     def get_studies_by_state(state):
         if state == "Bébé":
@@ -10,28 +11,26 @@ class Study:
         elif state == "Enfant":
             return [lecture, ecriture]
         elif state == "Adulte":
-            return [philosophie, psychologie, sociologie, economies, informatique]
+            return [philosophie, psychologie, sociologie, economies, informatique, gameDesign]
         else:
             return []
 
-#Création
+#Création d'études
     #Bébé
-    #   Niveau 1
-formes = Study("Formes", 0, 20)
-chiffres = Study("Chiffres", 0, 20)
+formes = Study("Formes", "Bébé", 20, 0)
+chiffres = Study("Chiffres", "Bébé", 20, 0)
     #Enfant
-    #   Niveau 2
-lecture = Study("Lecture", 20, )
-ecriture = Study("Ecriture", 20, 20)
-    #   Niveau 3
-geographie = Study("Géographie", 30, 30)
-sciences = Study("Sciences", 30, 30)
-maths = Study("Maths", 30, 30)
-histoire = Study("Histoire", 30, 30)
+lecture = Study("Lecture", "Enfant", 30, 0)
+ecriture = Study("Ecriture", "Enfant", 30, 0)
+
+geographie = Study("Géographie", "Enfant", 40, 50)
+sciences = Study("Sciences", "Enfant", 40, 50)
+maths = Study("Maths", "Enfant", 40, 50)
+histoire = Study("Histoire", "Enfant", 40, 50)
     #Adulte
-    #   Niveau 4
-philosophie = Study("Philosophie", 40, 40)
-psychologie = Study("Psychologie", 40, 40)
-sociologie = Study("Sociologie", 40, 40)
-economies = Study("Economies", 40, 40)
-informatique = Study("Informatique", 40, 40)
+philosophie = Study("Philosophie", "Adulte", 40, 50)
+psychologie = Study("Psychologie", "Adulte", 40, 50)
+sociologie = Study("Sociologie", "Adulte", 70, 100)
+economies = Study("Economies", "Adulte", 80, 120)
+informatique = Study("Informatique", "Adulte", 90, 140)
+gameDesign = Study("Game Design", "Adulte", 100, 150)

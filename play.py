@@ -1,30 +1,24 @@
 class Play:
-    def __init__ (self, name, type, level=1):
+    def __init__ (self, name, gain=100, intelligence=1):
         self.name = name
-        self.type = type
-        self.level = level
+        self.gain = gain
+        self.intelligence = intelligence
 
 #Création de jouets
     #Ballon :
-    #   Niveau 1
-petiteBalle = Play("Petite balle", 1)
-ballon = Play("Ballon", 1)
-    #   Niveau 2
-balleTennis = Play("Balle de tennis", 2)
-ballonFoot = Play("Ballon de foot", 2)
-    #   Niveau 3
-ballonBasket = Play("Ballon de basket", 3)
-ballonRugby = Play("Ballon de rugby", 3)
+    #   BAsique
+petiteBalle = Play("Petite balle", 20, 0)
+ballon = Play("Ballon", 20, 0)
+    #   Amélioration
+balleTennis = Play("Balle de tennis", 50, 50)
+ballonFoot = Play("Ballon de foot", 70, 100)
+ballonBasket = Play("Ballon de basket", 90, 150)
+ballonRugby = Play("Ballon de rugby", 100, 200)
 
-    #Autres :
-    #   Niveau 2
-poupée = Play("Poupée", 2)
-    #   Niveau 3
-voiture = Play("Voiture", 3)
-peluche = Play("Peluche", 3)
-    #   Niveau 4
-lego = Play("Lego", 4)
-puzzle = Play("Puzzle", 4)
-    #   Niveau 5
-console = Play("Console", 5)
-carte = Play("Carte", 5)
+poupée = Play("Poupée", 30, 50)
+voiture = Play("Voiture", 50, 80)
+peluche = Play("Peluche", 55, 100)
+lego = Play("Lego", 60, 150)
+puzzle = Play("Puzzle", 75, 200)
+carte = Play("Carte", 90, 250)
+console = Play("Console", 100, 500)
