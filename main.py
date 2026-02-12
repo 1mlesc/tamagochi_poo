@@ -77,8 +77,15 @@ while creature.is_alive():
             can_die = True
         else:
             can_die = False
+            j +=1
         i = 0
         while i != actions_possible:
+            #Si la créature est trop fatiguée, elle doit dormir, on avertit sinon on force la créature à dormir
+            if creature.tiredness > 85: 
+                creature.notify("need_sleep")
+            elif creature.tiredness > 95:
+                i = actions_possible
+                
             print("Jour " + str(j) + " :")
             print("Actions restantes : " + str(actions_possible - i))
             action = questionary.select(

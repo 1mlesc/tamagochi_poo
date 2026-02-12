@@ -25,14 +25,14 @@ class Creature(Observable):
 
     #Fonction pour faire manger la créature
     def eat(self, food: Food):
-      gain = food.gain
-      self.decrease_hunger(gain)
+      self.decrease_hunger(food.gain)
       self.increase_steps()
-      self.increase_happiness(8)
-      self.increase_physical_health(5)
+      self.increase_happiness(food.gain_happiness)
+      self.increase_health(food.gain_health)
+      self.increase_physical_health(food.gain_physical_health)
 
-      self.increase_tiredness(5)
-      self.notify("eat", gain)
+      self.increase_tiredness(food.gain_tiredness)
+      self.notify("eat", food.gain)
 
 
     #Fonction pour faire dormir la créature
@@ -49,29 +49,26 @@ class Creature(Observable):
 
 
     #Fonction pour faire étudier la créature
-    def study(self, subject: Study):
-      gain = subject.gain
-      self.increase_intelligence(gain)
+    def study(self, study: Study):
+      self.increase_intelligence(study.gain)
       self.increase_steps()
 
-      self.increase_tiredness(20)
-      self.increase_hunger(15)
-      self.decrease_happiness(5)
-      self.decrease_physical_health(2)
+      self.increase_tiredness(study.gain_tiredness)
+      self.increase_hunger(study.gain_hunger)
+      self.decrease_happiness(study.gain_happiness)
+      self.decrease_physical_health(study.gain_physical_health)
 
-      self.notify("study", gain)
+      self.notify("study", study.gain)
 
 
     #Fonction pour faire jouer la créature
     def play(self, play: Play):
-      self.notify("play")
-      gain = play.gain
-      self.increase_happiness(gain)
+      self.increase_happiness(play.gain_happiness)
       self.increase_steps()
 
-      self.decrease_intelligence(3)
-      self.increase_hunger(10)
-      
+      self.decrease_intelligence(play.gain_intelligence)
+      self.increase_hunger(play.gain_hunger)
+      self.increase_tiredness(play.gain_tiredness)
       self.notify("play")
 
     #Fonction pour faire faire du sport à la créature
@@ -81,13 +78,13 @@ class Creature(Observable):
     #Fonction pour faire se laver la créature
     def wash(self):
       # Augmentation de la vie
-      self.increase_happiness()
+      self.increase_happiness(12)
       self.increase_steps()
-      self.increase_health(10)
-      self.increase_physical_health(10)
+      self.increase_health(15)
+      self.increase_physical_health(12)
       
       # Dégradation de la vie
-      self.increase_hunger(10)
+      self.increase_hunger(13)
 
       self.notify("wash")
 
@@ -95,12 +92,12 @@ class Creature(Observable):
     def work(self, job: Job):
       self.increase_money(job.salary)
       self.increase_steps()
-      self.increase_intelligence(5)
+      self.increase_intelligence(job.gain_intelligence)
 
-      self.decrease_health(6)
-      self.increase_hunger(15)
-      self.decrease_happiness(7)
-      self.decrease_physical_health(3)
+      self.decrease_health(job.gain_health)
+      self.increase_hunger(job.gain_hunger)
+      self.decrease_happiness(job.gain_happiness)
+      self.decrease_physical_health(job.gain_physical_health)
 
       self.notify("work", job)
 

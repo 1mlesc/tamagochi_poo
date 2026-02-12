@@ -17,7 +17,10 @@ class Observer:
 
         elif event == "wash":
             print(f"{subject.name} s'est lavé et a maintenant {subject.health} de santé et {subject.happiness} de bonheur")
-
+        elif event == "work":
+            pass
+        elif event == "need_sleep":
+            print(f"{subject.name} est très fatigué, il doit aller dormir !")
         elif event == "die":
             print(f"{subject.name} est mort !")
         elif event == "evolve_kid":
