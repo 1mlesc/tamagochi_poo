@@ -3,21 +3,14 @@ import questionary
 
 from food import Food
 from job import Job
-from observer import Observer
+from observer import GameUI
 from study import Study
 
 creature = Factory().create_creature("Tom")
-creature.add_observer(Observer())
+creature.add_observer(GameUI())
 
 def rules():
-    print("Bienvenue dans le jeu de Tamagochi !")
-    print("Votre créature s'appelle " + creature.name + " et elle est actuellement un " + creature.state + ".")
-    print("Vous pouvez faire les actions suivantes : Manger, Dormir, Se laver, Jouer, Étudier, Faire du sport, Travailler en fonction de l'état de votre créature.")
-    print("Chaque action a des effets différents sur votre créature. Par exemple, manger baisse la faim, dormir réduit la fatigue, étudier augmente l'intelligence, etc.")
-    print("Votre objectif est de prendre soin de votre créature et de la faire évoluer en lui faisant faire les bonnes actions au bon moment !")
-    print("Chaque action que vous faites augmente les étapes de la vie de votre créature. Lorsque les étapes atteignent 8, votre créature évolue et passe à l'état suivant !")
-    print("But du jeu : faire évoluer votre créature jusqu'à l'état de Vieux en prenant soin d'elle et en lui faisant faire les bonnes actions au bon moment !")
-
+    creature.notify("rules")
 
 baby = "Bébé"
 kid = "Enfant"
@@ -65,8 +58,8 @@ while creature.is_alive():
     while j != 10:
         i = 0
         while i != actions_possible:
-            print("Jour " + str(j) + " :")
-            print("Actions restantes : " + str(actions_possible - i))
+            print("\033[1m\033[4mJour " + str(j) + " :\033[0m")
+            print(" Actions restantes : " + str(actions_possible - i))
             action = questionary.select(
                 "Que voulez-vous faire ?",
                 choices=choices_baby if creature.state == baby else choices_kid if creature.state == kid else choices_adult if creature.state == adult else choices_old
@@ -82,6 +75,7 @@ while creature.is_alive():
             #Action Dormir
             elif action == "Dormir":
                 creature.sleep()
+                creature.notify("sleep")
             #Action Étudier
             elif action == "Étudier":
                 study_action = questionary.select(
@@ -114,6 +108,7 @@ while creature.is_alive():
         ).ask()
         if action == "Dormir":
             creature.sleep()
+            creature.notify("bigSleep")
 
         j += 1
         print(creature.show_status())
