@@ -3,100 +3,6 @@ from abc import ABC, abstractmethod
 class Observer(ABC):
     @abstractmethod
     def update(self, subject, event, amount=None):
-        if event == "eat":
-            print(f"{subject.name} a fini de manger")
-        
-        elif event == "sleep":
-            print(f"{subject.name} a dormi")
-
-        elif event == "study":
-            print(f"{subject.name} a fini d'étudier")
-
-        elif event == "play":
-            print(f"{subject.name} a fini de jouer")
-
-        elif event == "sport":
-            print(f"{subject.name} a fini son sport")
-
-        elif event == "wash":
-            print(f"{subject.name} a fini de se laver")
-        elif event == "work":
-            print(f"{subject.name} a fini de travailler")
-        # Notifications for attribute changes (increase / decrease)
-        elif event == "increase_intelligence":
-            print(f"{subject.name} a gagné {amount}% d'intelligence")
-        elif event == "decrease_intelligence":
-            print(f"{subject.name} a perdu {amount}% d'intelligence")
-        elif event == "increase_physical_health":
-            print(f"{subject.name} a augmenté sa santé physique de {amount}")
-        elif event == "decrease_physical_health":
-            print(f"{subject.name} a diminué sa santé physique de {amount}")
-        elif event == "increase_tiredness":
-            print(f"{subject.name} s'est fatigué de {amount}")
-        elif event == "decrease_tiredness":
-            print(f"{subject.name} a récupéré de {amount} de fatigue")
-        elif event == "increase_money":
-            print(f"{subject.name} a gagné {amount}€")
-        elif event == "decrease_money":
-            print(f"{subject.name} a perdu {amount}€")
-        elif event == "increase_hunger":
-            print(f"{subject.name} a faim de +{amount}")
-        elif event == "decrease_hunger":
-            print(f"{subject.name} a moins faim de -{amount}")
-        elif event == "increase_health":
-            print(f"{subject.name} a gagné {amount} de santé")
-        elif event == "decrease_health":
-            print(f"{subject.name} a perdu {amount} de santé")
-        elif event == "increase_happiness":
-            print(f"{subject.name} est plus heureux de +{amount}")
-        elif event == "decrease_happiness":
-            print(f"{subject.name} est moins heureux de -{amount}")
-        elif event == "evolve_adult":
-            print(f"{subject.name} a évolué en Adulte !")
-        elif event == "evolve_old":
-            print(f"{subject.name} a évolué en Vieux !")
-        elif event == "rent":
-            print(f"{subject.name} a payé {amount}€ de loyer !")
-        elif event == "need_sleep":
-            print(f"{subject.name} est très fatigué, il doit aller dormir ! -1 action possible")
-        elif event == "need_food":
-            print(f"{subject.name} est très affamé, il doit aller manger ! -1 action possible")
-        elif event == "die":
-            print(f"{subject.name} est mort !")
-        elif event == "evolve_kid":
-            print(f"{subject.name} a évolué en Enfant ! Félicitations, il peut désormais étudier et faire du sport !")
-            print(
-    "\n      __"
-        "\n     (  )"
-      "\n      )("
-    "\n   ,;/  \:."
-   "\n  ( `.__,' )"
-    "\n   `-.__,-'"
-     "\n    ((__))"
-"\n     `--'")
-    
-
-class Observable:
-    def __init__(self):
-        self._observers = []
-
-    #Ajouter un observateur
-    def add_observer(self, observer):
-        if observer not in self._observers:
-            self._observers.append(observer)
-
-    #Supprimer un observateur
-    def remove_observer(self, observer):
-        self._observers.remove(observer)
-
-    #Notifier les observateurs d'un événement
-    def notify(self, event, amount=None):
-      for observer in self._observers:
-        observer.update(self, event, amount)
-
-class GameUI(Observer):
-    @staticmethod
-    def update(subject, event, amount=None):
         if event == "rule":
             print("                                            ,''`."
                   "\n                                           /     \ "
@@ -146,12 +52,12 @@ class GameUI(Observer):
         elif event == "study":
             print(f"{subject.name} a étudié et a maintenant {subject.intelligence} d'intelligence")
             print(" ")
-            print("           _______      |\__/,|   (`\ "
-                    "\n     /       /_   _.|o o  |_   ) )"
-                    "\n    /       / /  -(((---(((--------"
-                    "\n   /       / /"
-                    "\n  /_______/ /"
-                    "\n ((______| /")
+            print("      _______       |\__/,|   (`\ "
+                "\n     /       /_   _.|o o  |_   ) )"
+                "\n    /       / /  -(((---(((--------"
+                "\n   /       / /"
+                "\n  /_______/ /"
+                "\n ((______| /")
 
         elif event == "play":
             print(f"{subject.name} a joué et a maintenant {subject.happiness} de bonheur")
@@ -164,17 +70,117 @@ class GameUI(Observer):
         elif event == "sport":
             print(f"{subject.name} a fait du sport et a maintenant {subject.health} de santé")
             print(" ")
-            print("  /\_/\ "
-                "\n ( o.o )"
-                "\n >  ^  <"
-               "\n /  ___  \ "
-              "\n (__/   \__)")
+            print("    /\_/\ "
+                "\n   ( o.o )"
+                "\n   >  ^  <"
+                "\n  /  ___  \ "
+                "\n (__/   \__)")
 
         elif event == "wash":
             print(f"{subject.name} s'est lavé et a maintenant {subject.health} de santé et {subject.happiness} de bonheur")
             print(" ")
-            print("  /\_/\ "
-                "\n ( >.< )"
-                "\n (  u  )"
-                "\n /     \ "
-               "\n|       |")
+            print("   /\_/\ "
+                "\n  ( >.< )"
+                "\n  (  u  )"
+                "\n  /     \ "
+                "\n |       |")
+        
+        elif event == "work":
+            print(f"{subject.name} a fini de travailler")
+            print(" ")
+            print("   /\_/\ "
+                "\n  ( x.x )"
+                "\n   > ' <"
+                "\n  /  ~  \ "
+                "\n (_______)"
+                "\n |_|___|_|")
+        
+        # Notifications for attribute changes (increase / decrease)
+        elif event == "increase_intelligence":
+            print(f"{subject.name} a gagné \033[1m{amount}% d'intelligence\033[0m")
+        elif event == "decrease_intelligence":
+            print(f"{subject.name} a perdu \033[1m{amount}% d'intelligence\033[0m")
+        elif event == "increase_physical_health":
+            print(f"{subject.name} a augmenté sa \033[1msanté physique de {amount}\033[0m")
+        elif event == "decrease_physical_health":
+            print(f"{subject.name} a diminué sa \033[1msanté physique de {amount}\033[0m")
+        elif event == "increase_tiredness":
+            print(f"{subject.name} s'est \033[1mfatigué de {amount}\033[0m")
+        elif event == "decrease_tiredness":
+            print(f"{subject.name} a récupéré de \033[1m{amount} de fatigue\033[0m")
+        elif event == "increase_money":
+            print(f"{subject.name} a gagné \033[1m{amount}€\033[0m")
+        elif event == "decrease_money":
+            print(f"{subject.name} a perdu \033[1m{amount}€\033[0m")
+        elif event == "increase_hunger":
+            print(f"{subject.name} a \033[1mfaim de +{amount}\033[0m")
+        elif event == "decrease_hunger":
+            print(f"{subject.name} a \033[1mmoins faim de -{amount}\033[0m")
+        elif event == "increase_health":
+            print(f"{subject.name} a gagné \033[1m{amount} de santé\033[0m")
+        elif event == "decrease_health":
+            print(f"{subject.name} a perdu \033[1m{amount} de santé\033[0m")
+        elif event == "increase_happiness":
+            print(f"{subject.name} est \033[1mplus heureux de +{amount}\033[0m")
+        elif event == "decrease_happiness":
+            print(f"{subject.name} est\033[1m moins heureux de -{amount}\033[0m")
+        elif event == "rent":
+            print(f"{subject.name} a \033[1mpayé {amount}€ de loyer\033[0m !")
+        elif event == "need_sleep":
+            print(f"{subject.name} est \033[1mtrès fatigué\033[0m, il doit aller dormir ! -1 action possible")
+        elif event == "need_food":
+            print(f"{subject.name} est \033[1mtrès affamé\033[0m, il doit aller manger ! -1 action possible")
+        elif event == "die":
+            print(f"{subject.name} est \033[1m\033[4mmort\033[0m !")
+        elif event == "evolve_kid":
+            print(" ")
+            print("---------------------------------------------------------------------------------------------------------------------------")
+            print(f"{subject.name} a évolué en \033[1mEnfant\033[0m ! Félicitations, il peut désormais étudier et faire du sport !")
+            print(" ")
+            print("   /\_/\ "
+                "\n  ( o.o )         i   i"
+                "\n   > ^ <        __|___|__"
+                "\n  /  ~  \      |~~~Cake~~|"
+                "\n (       )     |_________|")
+            print("---------------------------------------------------------------------------------------------------------------------------")
+        elif event == "evolve_adult":
+            print(" ")
+            print("---------------------------------------------------------------------------------------------------------------------------")
+            print(f"{subject.name} a évolué en \033[1mAdulte\033[0m ! Félicitations, il peut désormais travailler !")
+            print(" ")
+            print("   /\___/\ "
+                "\n  (  o o  )"
+                "\n  /  =^=  \       i   i"
+                "\n (   ''    )    __|___|__"
+                "\n  \_______/    |~~~Cake~~|"
+                "\n   |  |  |     |_________|")
+            print("---------------------------------------------------------------------------------------------------------------------------")
+        elif event == "evolve_old":
+            print(" ")
+            print("---------------------------------------------------------------------------------------------------------------------------")
+            print(f"{subject.name} a évolué en \033[1mVieux\033[0m !")
+            print(" ")
+            print("    /\_/\ "
+                "\n   ( -.- )        i   i"
+                "\n   /  '  \  //  __|___|__"
+                "\n  (   _   )//  |~~~Cake~~|"
+                "\n /| /   \ |/   |_________|")
+            print("---------------------------------------------------------------------------------------------------------------------------")
+
+class Observable:
+    def __init__(self):
+        self._observers = []
+
+    #Ajouter un observateur
+    def add_observer(self, observer):
+        if observer not in self._observers:
+            self._observers.append(observer)
+
+    #Supprimer un observateur
+    def remove_observer(self, observer):
+        self._observers.remove(observer)
+
+    #Notifier les observateurs d'un événement
+    def notify(self, event, amount=None):
+      for observer in self._observers:
+        observer.update(self, event, amount)
