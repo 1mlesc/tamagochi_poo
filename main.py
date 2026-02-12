@@ -109,7 +109,7 @@ while creature.is_alive():
             i +=1
         #Lorsqu'on a plus d'action possibles, on dort !
         action = questionary.select(
-        "On est le soir, on doit aller dormir !!",
+        "On est le soir, on doit aller dormir !",
         choices= ["Dormir"]
         ).ask()
         if action == "Dormir":

@@ -3,7 +3,7 @@ from food import Food
 from job import Job
 from play import Play
 from observer import Observable
-#from sport import Sport
+from sport import Sport
 
 class Creature(Observable):
     def __init__(self, name, happiness=50, intelligence=1, tiredness=30, hunger=30, health=100, state="Bébé", money=0, steps=0):
