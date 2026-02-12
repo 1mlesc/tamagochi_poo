@@ -37,15 +37,12 @@ class Creature(Observable):
 
     #Fonction pour faire dormir la créature
     def sleep(self):
-      self.notify("sleep")
       self.reset_tiredness()
       self.increase_happiness(5)
       self.increase_health(10)
       self.increase_steps()
 
       self.increase_hunger(25)
-
-      self.notify("sleep")
 
 
     #Fonction pour faire étudier la créature
@@ -226,15 +223,17 @@ class Creature(Observable):
         self.notify("evolve_old")
 
     def show_status(self):
-      print("Nom : " + self.name)
-      print("État : " + self.state)
-      print("Happiness : " + self.show_happiness())
-      print("Intelligence : " + self.show_intelligence())
-      print("Fatigue : " + self.show_tiredness())
-      print("Faim : " + self.show_hunger())
-      print("Santé : " + self.show_health())
-      print("Santé physique : " + self.show_physical_health())
-      print("Argent : " + self.show_money())
+      print("\033[1mNom :\033[0m" + self.name)
+      print("\033[1mÉtat :\033[0m " + self.state)
+      print(" ")
+      print("\033[1mHappiness -\033[0m " + self.show_happiness())
+      print("\033[1mIntelligence -\033[0m " + self.show_intelligence())
+      print("\033[1mFatigue -\033[0m " + self.show_tiredness())
+      print("\033[1mFaim -\033[0m " + self.show_hunger())
+      print("\033[1mSanté -\033[0m " + self.show_health())
+      print("\033[1mSanté physique -\033[0m " + self.show_physical_health())
+      print("\033[1mArgent -\033[0m " + self.show_money())
+      
     #Fonction pour montrer l'état de la créature
     def show_happiness(self):
         if self.happiness > 80:
