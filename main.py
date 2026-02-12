@@ -3,7 +3,7 @@ import questionary
 
 from food import Food
 from job import Job
-from observer import Observer
+from observer import GameUI
 from play import Play
 from study import Study
 
@@ -11,7 +11,7 @@ creature = Factory().create_creature("Tom")
 creature.add_observer(GameUI())
 
 def rules():
-    creature.notify("rules")
+    creature.notify("rule")
 
 baby = "Bébé"
 kid = "Enfant"
@@ -75,8 +75,10 @@ while creature.is_alive():
             elif creature.tiredness > 95:
                 i = actions_possible
 
-            print("Jour " + str(j) + " :")
+            print(" ")
+            print("\033[1m\033[4mJour " + str(j) + " :\033[0m")
             print("Actions restantes : " + str(actions_possible - i))
+            print(" ")
             action = questionary.select(
                 "Que voulez-vous faire ?",
                 choices=choices_baby if creature.state == baby else choices_kid if creature.state == kid else choices_adult if creature.state == adult else choices_old

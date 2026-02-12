@@ -44,8 +44,6 @@ class Creature(Observable):
 
       self.increase_hunger(25)
 
-      self.notify("sleep")
-
 
     #Fonction pour faire étudier la créature
     def study(self, study: Study):
@@ -201,8 +199,8 @@ class Creature(Observable):
         self.notify("evolve_old")
 
     def show_status(self):
-      print("Nom : " + self.name)
-      print("État : " + self.state)
+      print("\033[1mNom :\033[0m" + self.name)
+      print("\033[1mÉtat :\033[0m " + self.state)
       print(" ")
       print("\033[1mHappiness -\033[0m " + self.show_happiness())
       print("\033[1mIntelligence -\033[0m " + self.show_intelligence())
