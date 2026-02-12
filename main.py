@@ -6,13 +6,14 @@ from job import Job
 from observer import Observer
 from play import Play
 from study import Study
+from sport import Sport
 
 creature = Factory().create_creature("Tom")
 creature.add_observer(Observer())
 
 def rules():
     print("Bienvenue dans le jeu de Tamagochi !")
-    print("Votre créature s'appelle " + creature.name + " et elle est actuellement un " + creature.state + ".")
+    print("Votre créature s'appelle " + str(creature.name) + " et elle est actuellement un " + str(creature.state) + ".")
     print("Vous pouvez faire les actions suivantes : Manger, Dormir, Se laver, Jouer, Étudier, Faire du sport, Travailler en fonction de l'état de votre créature.")
     print("Chaque action a des effets différents sur votre créature. Par exemple, manger baisse la faim, dormir réduit la fatigue, étudier augmente l'intelligence, etc.")
     print("Votre objectif est de prendre soin de votre créature et de la faire évoluer en lui faisant faire les bonnes actions au bon moment !")
@@ -22,6 +23,7 @@ def rules():
 def end_game():
     print("Fin du jeu !! Voici vos stats de votre créature :")
     creature.show_status() 
+    print("Score final : " + str(creature.score()))
     print("Merci d'avoir joué !")
 
 baby = "Bébé"
@@ -66,8 +68,11 @@ can_die = False
 #Boucle du jeu
 rules()
 while creature.is_alive():
-    j= 1
-    while j != 10:
+    j = 1
+    while j != 11:
+        #Paiement du loyer lorsqu'on est adulte ou vieux
+        if creature.state == adult or creature.state == old:
+            creature.rent(200)
         #Vérification de la santé de la créature, si elle est trop basse, elle meurt
         if can_die == True:
             creature.show_status()
@@ -80,11 +85,14 @@ while creature.is_alive():
             j +=1
         i = 0
         while i != actions_possible:
-            #Si la créature est trop fatiguée, elle doit dormir, on avertit sinon on force la créature à dormir
-            if creature.tiredness > 85: 
+            #Si la créature est très fatiguée, on lui enlève une action possible
+            if creature.tiredness > 90:
                 creature.notify("need_sleep")
-            elif creature.tiredness > 95:
-                i = actions_possible
+                i+= 1
+            #Si la créature est très affamée, on lui enlève une action possible
+            if creature.hunger > 90:
+                creature.notify("need_food")
+                i+= 1
 
             print("Jour " + str(j) + " :")
             print("Actions restantes : " + str(actions_possible - i))
@@ -128,7 +136,12 @@ while creature.is_alive():
                 creature.work(job_action)
             #Action Faire du sport
             elif action == "Faire du sport":
-                pass
+                sport_action = questionary.select(
+                    "Quel sport voulez-vous qu'il fasse ?",
+                    choices=[sport.name for sport in Sport.get_sports_by_physical_health(creature.physical_health)]
+                ).ask()
+                sport_action = next(sport for sport in Sport.get_sports_by_physical_health(creature.physical_health) if sport.name == sport_action) 
+                creature.sport(sport_action)
             #Action Travailler
             elif action == "Se laver":
                 creature.wash()
@@ -142,11 +155,14 @@ while creature.is_alive():
             creature.sleep()
 
         j += 1
-        print(creature.show_status())
-    #Lorsque nous sommes au jour 10, fin du jeu, on montre les résultats
-    end_game()
-#Si la créature n'est plus en vie, fin du jeu
-#creature.died()
-    
+        creature.show_status()
+        #Lorsque nous sommes au jour 10, fin du jeu, on montre les résultats
+        if j == 10:
+            creature.die()
+            break
+
+
+end_game()
+
 
     
