@@ -61,7 +61,7 @@ choices_old = [
     "Se laver",
     "Travailler",
 ]
-
+can_die = False
     
 #Boucle du jeu
 rules()
@@ -72,7 +72,7 @@ while creature.is_alive():
         if can_die == True:
             creature.show_status()
             creature.die()
-        if creature.state == kid or adult or old and creature.happiness < 15 or creature.health < 15 or creature.hunger > 85:
+        if creature.state == baby or kid or adult or old and creature.happiness < 15 or creature.health < 15 or creature.hunger > 85:
             print("Votre créature n'est pas au meilleur de sa forme, à la fin de la journée, elle pourrait en mourir !")
             can_die = True
         else:
@@ -85,7 +85,7 @@ while creature.is_alive():
                 creature.notify("need_sleep")
             elif creature.tiredness > 95:
                 i = actions_possible
-                
+
             print("Jour " + str(j) + " :")
             print("Actions restantes : " + str(actions_possible - i))
             action = questionary.select(
@@ -103,14 +103,13 @@ while creature.is_alive():
             #Action Dormir
             elif action == "Dormir":
                 creature.sleep()
-                i = actions_possible
             #Action Étudier
             elif action == "Étudier":
                 study_action = questionary.select(
                     "Que veux-tu qu'il étudie ?",
-                    choices=[study.name for study in Study.get_studies_by_state(creature.state)]
+                    choices=[study.name for study in Study.get_studies_by_intelligence(creature.intelligence)]
                 ).ask()
-                study_action = next(study for study in Study.get_studies_by_state(creature.state) if study.name == study_action)
+                study_action = next(study for study in Study.get_studies_by_intelligence(creature.intelligence) if study.name == study_action)
                 creature.study(study_action)
             #Action Jouer
             elif action == "Jouer":
@@ -118,7 +117,7 @@ while creature.is_alive():
                     "Avec quoi veux-tu qu'il joue ?", 
                     choices=[play.name for play in Play.get_plays_by_intelligence(creature.intelligence)] 
                 ).ask() 
-                play_action = next(play for play in Play.get_plays_by_state(creature.state) if play.name == play_action) 
+                play_action = next(play for play in Play.get_plays_by_intelligence(creature.intelligence) if play.name == play_action) 
                 creature.play(play_action) 
             elif action == "Travailler":
                 job_action = questionary.select(

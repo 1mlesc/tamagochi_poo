@@ -173,10 +173,10 @@ class Creature(Observable):
         self.health = 0
 
     #Augmentation des étapes de la vie
-    # Lorsque les étapes atteignent 8, la créature évolue
+    # Lorsque les étapes atteignent 16, la créature évolue
     def increase_steps(self):
       self.steps +=1
-      if self.steps == 8:
+      if self.steps == 16:
         self.steps = 0
         self.evolve()
 
@@ -226,13 +226,13 @@ class Creature(Observable):
 
     #Monter l'intelligence de la créature
     def show_intelligence(self):
-        if self.intelligence > 80:
+        if self.intelligence > 40:
             return "Très intelligent : " + str(self.intelligence) 
-        elif self.intelligence > 60:
+        elif self.intelligence > 10:
             return "Intelligent : " + str(self.intelligence) 
-        elif self.intelligence > 40:
+        elif self.intelligence > 5:
             return "Neutre : " + str(self.intelligence) 
-        elif self.intelligence > 20:
+        elif self.intelligence > 3:
             return "Peu intelligent : " + str(self.intelligence) 
         else:
             return "Très peu intelligent : " + str(self.intelligence) 
