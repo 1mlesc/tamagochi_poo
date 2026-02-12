@@ -4,6 +4,14 @@ class Play:
         self.gain = gain
         self.intelligence = intelligence
 
+    def get_plays_by_intelligence(intelligence):
+        plays= []
+        temp_plays = [petiteBalle, ballon, balleTennis, ballonFoot, ballonBasket, ballonRugby, poupée, voiture, peluche, lego, puzzle, carte, console] 
+        for play in temp_plays: 
+            if play.intelligence <= intelligence: 
+                plays.append(play) 
+        return plays
+    
 #Création de jouets
     #Ballon :
     #   BAsique

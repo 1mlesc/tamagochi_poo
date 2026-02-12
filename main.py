@@ -4,6 +4,7 @@ import questionary
 from food import Food
 from job import Job
 from observer import Observer
+from play import Play
 from study import Study
 
 creature = Factory().create_creature("Tom")
@@ -18,6 +19,10 @@ def rules():
     print("Chaque action que vous faites augmente les étapes de la vie de votre créature. Lorsque les étapes atteignent 8, votre créature évolue et passe à l'état suivant !")
     print("But du jeu : faire évoluer votre créature jusqu'à l'état de Vieux en prenant soin d'elle et en lui faisant faire les bonnes actions au bon moment !")
 
+def end_game():
+    print("Fin du jeu !! Voici vos stats de votre créature :")
+    creature.show_status() 
+    print("Merci d'avoir joué !")
 
 baby = "Bébé"
 kid = "Enfant"
@@ -58,11 +63,20 @@ choices_old = [
 ]
 
     
-
+#Boucle du jeu
 rules()
 while creature.is_alive():
     j= 1
     while j != 10:
+        #Vérification de la santé de la créature, si elle est trop basse, elle meurt
+        if can_die == True:
+            creature.show_status()
+            creature.die()
+        if creature.state == kid or adult or old and creature.happiness < 15 or creature.health < 15 or creature.hunger > 85:
+            print("Votre créature n'est pas au meilleur de sa forme, à la fin de la journée, elle pourrait en mourir !")
+            can_die = True
+        else:
+            can_die = False
         i = 0
         while i != actions_possible:
             print("Jour " + str(j) + " :")
@@ -82,6 +96,7 @@ while creature.is_alive():
             #Action Dormir
             elif action == "Dormir":
                 creature.sleep()
+                i = actions_possible
             #Action Étudier
             elif action == "Étudier":
                 study_action = questionary.select(
@@ -92,7 +107,12 @@ while creature.is_alive():
                 creature.study(study_action)
             #Action Jouer
             elif action == "Jouer":
-                pass
+                play_action = questionary.select(
+                    "Avec quoi veux-tu qu'il joue ?", 
+                    choices=[play.name for play in Play.get_plays_by_intelligence(creature.intelligence)] 
+                ).ask() 
+                play_action = next(play for play in Play.get_plays_by_state(creature.state) if play.name == play_action) 
+                creature.play(play_action) 
             elif action == "Travailler":
                 job_action = questionary.select(
                     "Quel travail voulez-vous lui faire faire ?",
@@ -117,7 +137,10 @@ while creature.is_alive():
 
         j += 1
         print(creature.show_status())
-      
+    #Lorsque nous sommes au jour 10, fin du jeu, on montre les résultats
+    end_game()
+#Si la créature n'est plus en vie, fin du jeu
+#creature.died()
     
 
     

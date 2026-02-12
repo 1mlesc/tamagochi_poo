@@ -28,20 +28,24 @@ class Creature(Observable):
       gain = food.gain
       self.decrease_hunger(gain)
       self.increase_steps()
-      self.increase_happiness()
+      self.increase_happiness(8)
+      self.increase_physical_health(5)
+
+      self.increase_tiredness(5)
       self.notify("eat", gain)
-      return self.hunger
 
 
     #Fonction pour faire dormir la créature
     def sleep(self):
       self.notify("sleep")
       self.reset_tiredness()
-      self.increase_happiness()
+      self.increase_happiness(5)
       self.increase_health(10)
       self.increase_steps()
 
-      self.increase_hunger(20)
+      self.increase_hunger(25)
+
+      self.notify("sleep")
 
 
     #Fonction pour faire étudier la créature
@@ -49,8 +53,14 @@ class Creature(Observable):
       gain = subject.gain
       self.increase_intelligence(gain)
       self.increase_steps()
+
+      self.increase_tiredness(20)
+      self.increase_hunger(15)
+      self.decrease_happiness(5)
+      self.decrease_physical_health(2)
+
       self.notify("study", gain)
-      return self.intelligence
+
 
     #Fonction pour faire jouer la créature
     def play(self, play: Play):
@@ -59,9 +69,10 @@ class Creature(Observable):
       self.increase_happiness(gain)
       self.increase_steps()
 
-      self.decrease_intelligence(5)
+      self.decrease_intelligence(3)
       self.increase_hunger(10)
-      return self.happiness
+      
+      self.notify("play")
 
     #Fonction pour faire faire du sport à la créature
     def sport(self, sport: Sport):
@@ -84,7 +95,14 @@ class Creature(Observable):
     def work(self, job: Job):
       self.increase_money(job.salary)
       self.increase_steps()
+      self.increase_intelligence(5)
+
+      self.decrease_health(6)
+      self.increase_hunger(15)
       self.decrease_happiness(7)
+      self.decrease_physical_health(3)
+
+      self.notify("work", job)
 
     #Fonction pour baisser l'intelligence en pourcentage
     def decrease_intelligence(self, amount):
@@ -106,7 +124,6 @@ class Creature(Observable):
 
     def decrease_physical_health(self, amount):
       self.physical_health -= amount
-      self.decrease_happiness(5)
       if self.physical_health < 0:
         self.physical_health = 0
 
@@ -132,14 +149,13 @@ class Creature(Observable):
 
     def decrease_money(self, amount):
       self.money -= amount
-      self.decrease_happiness(2)
+      self.decrease_happiness(amount)
 
     #Fonction pour augmenter la faim
     def increase_hunger(self, amount):
       self.hunger += amount
       if self.hunger > 100:
         self.hunger = 100
-        self.decrease_health(10)
 
     #Fonction pour baisser la faim
     def decrease_hunger(self, amount):
@@ -180,10 +196,13 @@ class Creature(Observable):
     def evolve(self):
       if self.state == "Bébé":
         self.state = "Enfant"
+        self.notify("evolve_kid")
       elif self.state == "Enfant":
         self.state = "Adulte"
+        self.notify("evolve_adult")
       elif self.state == "Adulte":
         self.state = "Vieux"
+        self.notify("evolve_old")
 
     def show_status(self):
       print("Nom : " + self.name)
@@ -288,4 +307,8 @@ class Creature(Observable):
 
     def is_alive(self):
       return self.health > 0
+    
+    def die(self):
+      if not self.is_alive(): 
+          self.notify("die")
 
