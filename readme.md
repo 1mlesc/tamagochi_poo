@@ -13,3 +13,5 @@ Ces deux éléments auront un impact sur son moral.
 - Idée : class logement -> (chez les parents = random pour savoir s'il peut rester ou non une fois adulte), à la rue, appartement, maison, villa
 
 - Faire une gestion d'autorisation pour certaines actions : certaines ne seront faisables qu'une fois par jour ou s'il est trop fatigué, alors cette action n'est pas réalisable.
+
+- Idée : ajout de maladie si la créature ne se lave pas, elle peut mourir si elle ne prend pas les médicaments nécessaires
