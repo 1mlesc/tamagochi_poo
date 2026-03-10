@@ -156,7 +156,7 @@ class Creature(Observable):
 
     def decrease_money(self, amount):
       self.money -= amount
-      self.decrease_happiness(amount)
+      self.decrease_happiness(amount / 10)
       self.notify("decrease_money", amount)
 
     #Fonction pour augmenter la faim

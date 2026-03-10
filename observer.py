@@ -1,7 +1,4 @@
-from abc import ABC, abstractmethod
-
-class Observer(ABC):
-    @abstractmethod
+class Observer():
     def update(self, subject, event, amount=None):
         pass
     
