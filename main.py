@@ -71,7 +71,7 @@ while creature.is_alive():
         if can_die == True:
             creature.show_status()
             creature.die()
-        if creature.state == (baby or kid or adult or old) and creature.happiness < 15 or creature.health < 15 or creature.hunger > 85:
+        if creature.state == (baby or kid or adult or old) and creature._happiness < 15 or creature._health < 15 or creature._hunger > 85:
             print("Votre créature n'est pas au meilleur de sa forme, à la fin de la journée, elle pourrait en mourir !")
             can_die = True
         else:
@@ -80,11 +80,11 @@ while creature.is_alive():
         i = 0
         while i != actions_possible:
             #Si la créature est très fatiguée, on lui enlève une action possible
-            if creature.tiredness > 90:
+            if creature._tiredness > 90:
                 creature.notify("need_sleep")
                 i+= 1
             #Si la créature est très affamée, on lui enlève une action possible
-            if creature.hunger > 90:
+            if creature._hunger > 90:
                 creature.notify("need_food")
                 i+= 1
 
@@ -112,32 +112,32 @@ while creature.is_alive():
             elif action == "Étudier":
                 study_action = questionary.select(
                     "Que veux-tu qu'il étudie ?",
-                    choices=[study.name for study in Study.get_studies_by_intelligence(creature.intelligence)]
+                    choices=[study.name for study in Study.get_studies_by_intelligence(creature._intelligence)]
                 ).ask()
-                study_action = next(study for study in Study.get_studies_by_intelligence(creature.intelligence) if study.name == study_action)
+                study_action = next(study for study in Study.get_studies_by_intelligence(creature._intelligence) if study.name == study_action)
                 creature.study(study_action)
             #Action Jouer
             elif action == "Jouer":
                 play_action = questionary.select(
                     "Avec quoi veux-tu qu'il joue ?", 
-                    choices=[play.name for play in Play.get_plays_by_intelligence(creature.intelligence)] 
+                    choices=[play.name for play in Play.get_plays_by_intelligence(creature._intelligence)] 
                 ).ask() 
-                play_action = next(play for play in Play.get_plays_by_intelligence(creature.intelligence) if play.name == play_action) 
+                play_action = next(play for play in Play.get_plays_by_intelligence(creature._intelligence) if play.name == play_action) 
                 creature.play(play_action) 
             elif action == "Travailler":
                 job_action = questionary.select(
                     "Quel travail voulez-vous lui faire faire ?",
-                    choices=[job.name for job in Job.get_jobs_by_state(creature.intelligence)]
+                    choices=[job.name for job in Job.get_jobs_by_state(creature._intelligence)]
                 ).ask()
-                job_action = next(job for job in Job.get_jobs_by_state(creature.intelligence) if job.name == job_action)
+                job_action = next(job for job in Job.get_jobs_by_state(creature._intelligence) if job.name == job_action)
                 creature.work(job_action)
             #Action Faire du sport
             elif action == "Faire du sport":
                 sport_action = questionary.select(
                     "Quel sport voulez-vous qu'il fasse ?",
-                    choices=[sport.name for sport in Sport.get_sports_by_physical_health(creature.physical_health)]
+                    choices=[sport.name for sport in Sport.get_sports_by_physical_health(creature._physical_health)]
                 ).ask()
-                sport_action = next(sport for sport in Sport.get_sports_by_physical_health(creature.physical_health) if sport.name == sport_action) 
+                sport_action = next(sport for sport in Sport.get_sports_by_physical_health(creature._physical_health) if sport.name == sport_action) 
                 creature.sport(sport_action)
             #Action Travailler
             elif action == "Se laver":

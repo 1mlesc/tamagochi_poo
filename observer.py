@@ -42,7 +42,7 @@ class GameUI(Observer):
             print("\033[1m\033[4mBut du jeu :\033[1m faire évoluer votre créature jusqu'à l'état de \033[1mVieux\033[0m en prenant soin d'elle et en lui faisant \033[1mfaire les bonnes actions au bon moment !\033[0m")
         
         elif event == "eat":
-            print(f"{subject.name} a mangé et a maintenant {subject.hunger} de faim")
+            print(f"{subject.name} a mangé et a maintenant {subject._hunger} de faim")
             print(" ")
             print("     /\_____/\ "
                "\n    /  o   o  \ "
@@ -70,7 +70,7 @@ class GameUI(Observer):
             print("---------------------------------------------------")
 
         elif event == "study":
-            print(f"{subject.name} a étudié et a maintenant {subject.intelligence} d'intelligence")
+            print(f"{subject.name} a étudié et a maintenant {subject._intelligence} d'intelligence")
             print(" ")
             print("      _______       |\__/,|   (`\ "
                 "\n     /       /_   _.|o o  |_   ) )"
@@ -80,7 +80,7 @@ class GameUI(Observer):
                 "\n ((______| /")
 
         elif event == "play":
-            print(f"{subject.name} a joué et a maintenant {subject.happiness} de bonheur")
+            print(f"{subject.name} a joué et a maintenant {subject._happiness} de bonheur")
             print(" ")
             print("     /\_/\           ___"
                 "\n    = o_o =_______    \ \ "
@@ -88,7 +88,7 @@ class GameUI(Observer):
                 "\n (@)<_____>__(_____)____/")
 
         elif event == "sport":
-            print(f"{subject.name} a fait du sport et a maintenant {subject.health} de santé")
+            print(f"{subject.name} a fait du sport et a maintenant {subject._health} de santé")
             print(" ")
             print("    /\_/\ "
                 "\n   ( o.o )"
@@ -97,7 +97,7 @@ class GameUI(Observer):
                 "\n (__/   \__)")
 
         elif event == "wash":
-            print(f"{subject.name} s'est lavé et a maintenant {subject.health} de santé et {subject.happiness} de bonheur")
+            print(f"{subject.name} s'est lavé et a maintenant {subject._health} de santé et {subject._happiness} de bonheur")
             print(" ")
             print("   /\_/\ "
                 "\n  ( >.< )"

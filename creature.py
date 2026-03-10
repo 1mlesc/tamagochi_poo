@@ -10,14 +10,15 @@ class Creature(Observable):
       super().__init__()
       self.name = name
       self.state = state
-      self.happiness = happiness
-      self.intelligence = intelligence
-      self.tiredness = tiredness
-      self.hunger = hunger
-      self.health = health
-      self.physical_health = physical_health
-      self.money = money
-      self.steps = steps
+      #Attributs encaspulés
+      self._happiness = happiness
+      self._intelligence = intelligence
+      self._tiredness = tiredness
+      self._hunger = hunger
+      self._health = health
+      self._physical_health = physical_health
+      self._money = money
+      self._steps = steps
 
     #Ajout de l'observateur pour la créature
     def add_observer(self, observer):
@@ -106,105 +107,105 @@ class Creature(Observable):
 
     #Fonction pour baisser l'intelligence en pourcentage
     def decrease_intelligence(self, amount):
-      self.intelligence -= self.intelligence * amount / 100
-      if self.intelligence < 0:
-        self.intelligence = 0
+      self._intelligence -= self._intelligence * amount / 100
+      if self._intelligence < 0:
+        self._intelligence = 0
       self.notify("decrease_intelligence", amount)
 
     #Fonction pour augmenter l'intelligence en pourcentage
     def increase_intelligence(self, amount):
-      self.intelligence += self.intelligence * amount / 100
-      if self.intelligence > 100:
-        self.intelligence = 100
+      self._intelligence += self._intelligence * amount / 100
+      if self._intelligence > 100:
+        self._intelligence = 100
       self.notify("increase_intelligence", amount)
 
 
     def increase_physical_health(self, amount):
-      self.physical_health += amount
-      if self.physical_health > 100:
-        self.physical_health = 100
+      self._physical_health += amount
+      if self._physical_health > 100:
+        self._physical_health = 100
       self.notify("increase_physical_health", amount)
 
     def decrease_physical_health(self, amount):
-      self.physical_health -= amount
-      if self.physical_health < 0:
-        self.physical_health = 0
+      self._physical_health -= amount
+      if self._physical_health < 0:
+        self._physical_health = 0
       self.notify("decrease_physical_health", amount)
 
     #Fonction pour gérer la fatigue
     def increase_tiredness(self, amount):
-      self.tiredness += amount
-      if self.tiredness > 100:
-        self.tiredness = 100
+      self._tiredness += amount
+      if self._tiredness > 100:
+        self._tiredness = 100
       self.notify("increase_tiredness", amount)
     
     def decrease_tiredness(self, amount):
-      self.tiredness -= amount
-      if self.tiredness < 0:
-        self.tiredness = 0
+      self._tiredness -= amount
+      if self._tiredness < 0:
+        self._tiredness = 0
       self.notify("decrease_tiredness", amount)
 
     def reset_tiredness(self):
-      self.tiredness = 0
+      self._tiredness = 0
     
     #Fonction pour augmenter l'argent
     def increase_money(self, amount):
-      self.money += amount
+      self._money += amount
       gain = amount / 100
       self.increase_happiness(gain)
       self.notify("increase_money", amount)
 
     def decrease_money(self, amount):
-      self.money -= amount
+      self._money -= amount
       self.decrease_happiness(amount / 10)
       self.notify("decrease_money", amount)
 
     #Fonction pour augmenter la faim
     def increase_hunger(self, amount):
-      self.hunger += amount
-      if self.hunger > 100:
-        self.hunger = 100
+      self._hunger += amount
+      if self._hunger > 100:
+        self._hunger = 100
       self.notify("increase_hunger", amount)
 
     #Fonction pour baisser la faim
     def decrease_hunger(self, amount):
-      self.hunger -= amount
-      if self.hunger < 0:
-        self.hunger = 0
+      self._hunger -= amount
+      if self._hunger < 0:
+        self._hunger = 0
       self.notify("decrease_hunger", amount)
     
     #Fonction pour augmenter la santé
     def increase_health(self, amount):
-      self.health += amount
-      if self.health > 100:
-        self.health = 100
+      self._health += amount
+      if self._health > 100:
+        self._health = 100
       self.notify("increase_health", amount)
 
     #Fonction pour baisser la santé
     def decrease_health(self, amount):
-      self.health -= amount
-      if self.health < 0:
-        self.health = 0
+      self._health -= amount
+      if self._health < 0:
+        self._health = 0
       self.notify("decrease_health", amount)
 
     #Augmentation des étapes de la vie
     # Lorsque les étapes atteignent 16, la créature évolue
     def increase_steps(self):
-      self.steps +=1
-      if self.steps == 16:
-        self.steps = 0
+      self._steps +=1
+      if self._steps == 16:
+        self._steps = 0
         self.evolve()
 
     def increase_happiness(self, amount=5):
-      self.happiness += amount
-      if self.happiness > 100:
-        self.happiness = 100
+      self._happiness += amount
+      if self._happiness > 100:
+        self._happiness = 100
       self.notify("increase_happiness", amount)
     
     def decrease_happiness(self, amount=5):
-      self.happiness -= amount
-      if self.happiness < 0:
-        self.happiness = 0
+      self._happiness -= amount
+      if self._happiness < 0:
+        self._happiness = 0
       self.notify("decrease_happiness", amount)
 
     def rent(self, amount):
@@ -236,110 +237,110 @@ class Creature(Observable):
       
     #Fonction pour montrer l'état de la créature
     def show_happiness(self):
-        if self.happiness > 80:
-            return "Très heureux : " + str(self.happiness) 
-        elif self.happiness > 60:
-            return "Heureux : " + str(self.happiness)
-        elif self.happiness > 40:
-            return "Neutre : " + str(self.happiness) 
-        elif self.happiness > 20:
-            return "Triste : " + str(self.happiness) 
+        if self._happiness > 80:
+            return "Très heureux : " + str(self._happiness) 
+        elif self._happiness > 60:
+            return "Heureux : " + str(self._happiness)
+        elif self._happiness > 40:
+            return "Neutre : " + str(self._happiness) 
+        elif self._happiness > 20:
+            return "Triste : " + str(self._happiness) 
         else:
-            return "Très triste : " + str(self.happiness) 
+            return "Très triste : " + str(self._happiness) 
 
     #Monter l'intelligence de la créature
     def show_intelligence(self):
-        if self.intelligence > 40:
-            return "Très intelligent : " + str(self.intelligence) 
-        elif self.intelligence > 10:
-            return "Intelligent : " + str(self.intelligence) 
-        elif self.intelligence > 5:
-            return "Neutre : " + str(self.intelligence) 
-        elif self.intelligence > 3:
-            return "Peu intelligent : " + str(self.intelligence) 
+        if self._intelligence > 40:
+            return "Très intelligent : " + str(self._intelligence) 
+        elif self._intelligence > 10:
+            return "Intelligent : " + str(self._intelligence) 
+        elif self._intelligence > 5:
+            return "Neutre : " + str(self._intelligence) 
+        elif self._intelligence > 3:
+            return "Peu intelligent : " + str(self._intelligence) 
         else:
-            return "Très peu intelligent : " + str(self.intelligence) 
+            return "Très peu intelligent : " + str(self._intelligence) 
     
     #Montrer la fatigue de la créature
     def show_tiredness(self):
-        if self.tiredness > 80:
-            return "Très fatigué : " + str(self.tiredness) 
-        elif self.tiredness > 60:
-            return "Fatigué : " + str(self.tiredness) 
-        elif self.tiredness > 40:
-            return "Neutre : " + str(self.tiredness) 
-        elif self.tiredness > 20:
-            return "Peu fatigué : " + str(self.tiredness) 
+        if self._tiredness > 80:
+            return "Très fatigué : " + str(self._tiredness) 
+        elif self._tiredness > 60:
+            return "Fatigué : " + str(self._tiredness) 
+        elif self._tiredness > 40:
+            return "Neutre : " + str(self._tiredness) 
+        elif self._tiredness > 20:
+            return "Peu fatigué : " + str(self._tiredness) 
         else:
-            return "Très peu fatigué : " + str(self.tiredness)
+            return "Très peu fatigué : " + str(self._tiredness)
 
     #Montrer la faim de la créature
     def show_hunger(self):
-        if self.hunger > 80:
-            return "Très affamé : " + str(self.hunger) 
-        elif self.hunger > 60:
-            return "Affamé : " + str(self.hunger) 
-        elif self.hunger > 40:
-            return "Neutre : " + str(self.hunger) 
-        elif self.hunger > 20:
-            return "Peu affamé : " + str(self.hunger) 
+        if self._hunger > 80:
+            return "Très affamé : " + str(self._hunger) 
+        elif self._hunger > 60:
+            return "Affamé : " + str(self._hunger) 
+        elif self._hunger > 40:
+            return "Neutre : " + str(self._hunger) 
+        elif self._hunger > 20:
+            return "Peu affamé : " + str(self._hunger) 
         else:
-            return "Très peu affamé : " + str(self.hunger) 
+            return "Très peu affamé : " + str(self._hunger) 
     
     #Montrer la vie de la créature
     def show_health(self):
-        if self.health > 80:
-            return "Très en bonne santé : " + str(self.health) 
-        elif self.health > 60:
-            return "En bonne santé : " + str(self.health) 
-        elif self.health > 40:
-            return "Neutre : " + str(self.health) 
-        elif self.health > 20:
-            return "En mauvaise santé : " + str(self.health) 
+        if self._health > 80:
+            return "Très en bonne santé : " + str(self._health) 
+        elif self._health > 60:
+            return "En bonne santé : " + str(self._health) 
+        elif self._health > 40:
+            return "Neutre : " + str(self._health) 
+        elif self._health > 20:
+            return "En mauvaise santé : " + str(self._health) 
         else:
-            return "Très en mauvaise santé : " + str(self.health)
+            return "Très en mauvaise santé : " + str(self._health)
         
     #Montrer la vie physique de la créature
     def show_physical_health(self):
-        if self.physical_health > 80:
-            return "Très en bonne santé physique : " + str(self.physical_health) 
-        elif self.physical_health > 60:
-            return "En bonne santé physique : " + str(self.physical_health) 
-        elif self.physical_health > 40:
-            return "Neutre : " + str(self.physical_health) 
-        elif self.physical_health > 20:
-            return "En mauvaise santé physique : " + str(self.physical_health) 
+        if self._physical_health > 80:
+            return "Très en bonne santé physique : " + str(self._physical_health) 
+        elif self._physical_health > 60:
+            return "En bonne santé physique : " + str(self._physical_health) 
+        elif self._physical_health > 40:
+            return "Neutre : " + str(self._physical_health) 
+        elif self._physical_health > 20:
+            return "En mauvaise santé physique : " + str(self._physical_health) 
         else:
-            return "Très en mauvaise santé physique : " + str(self.physical_health)
+            return "Très en mauvaise santé physique : " + str(self._physical_health)
     
     #Montrer l'argent de la créature
     def show_money(self):
-        if self.money > 80:
-            return "Très riche : " + str(self.money) 
-        elif self.money > 60:
-            return "Riche : " + str(self.money) 
-        elif self.money > 40:
-            return "Neutre : " + str(self.money) 
-        elif self.money > 20:
-            return "Pauvre : " + str(self.money) 
+        if self._money > 80:
+            return "Très riche : " + str(self._money) 
+        elif self._money > 60:
+            return "Riche : " + str(self._money) 
+        elif self._money > 40:
+            return "Neutre : " + str(self._money) 
+        elif self._money > 20:
+            return "Pauvre : " + str(self._money) 
         else:
-            return "Très pauvre : " + str(self.money)
+            return "Très pauvre : " + str(self._money)
 
     def is_alive(self):
-      return self.health > 0
+      return self._health > 0
     
     def die(self):
-      self.health = 0
+      self._health = 0
       self.notify("die")
 
     def score(self):
       score = 0
-      score += self.happiness * 2
-      score += self.money / 100
-      score += round(self.intelligence) / 2
-      score += self.health
-      score += self.physical_health * 2
+      score += self._happiness * 2
+      score += self._money / 100
+      score += round(self._intelligence) / 2
+      score += self._health
+      score += self._physical_health * 2
 
-      score -= self.hunger * 5
-      score -= self.tiredness * 5
+      score -= self._hunger * 5
+      score -= self._tiredness * 5
       return score
