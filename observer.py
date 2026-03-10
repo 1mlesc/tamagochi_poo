@@ -3,6 +3,29 @@ from abc import ABC, abstractmethod
 class Observer(ABC):
     @abstractmethod
     def update(self, subject, event, amount=None):
+        pass
+    
+class Observable:
+    def __init__(self):
+        self._observers = []
+
+    #Ajouter un observateur
+    def add_observer(self, observer):
+        if observer not in self._observers:
+            self._observers.append(observer)
+
+    #Supprimer un observateur
+    def remove_observer(self, observer):
+        self._observers.remove(observer)
+
+    #Notifier les observateurs d'un événement
+    def notify(self, event, amount=None):
+      for observer in self._observers:
+        observer.update(self, event, amount)
+
+class GameUI(Observer):
+    @staticmethod
+    def update(subject, event, amount=None):
         if event == "rule":
             print("                                            ,''`."
                   "\n                                           /     \ "
@@ -166,21 +189,3 @@ class Observer(ABC):
                 "\n  (   _   )//  |~~~Cake~~|"
                 "\n /| /   \ |/   |_________|")
             print("---------------------------------------------------------------------------------------------------------------------------")
-
-class Observable:
-    def __init__(self):
-        self._observers = []
-
-    #Ajouter un observateur
-    def add_observer(self, observer):
-        if observer not in self._observers:
-            self._observers.append(observer)
-
-    #Supprimer un observateur
-    def remove_observer(self, observer):
-        self._observers.remove(observer)
-
-    #Notifier les observateurs d'un événement
-    def notify(self, event, amount=None):
-      for observer in self._observers:
-        observer.update(self, event, amount)

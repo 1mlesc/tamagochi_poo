@@ -3,13 +3,13 @@ import questionary
 
 from food import Food
 from job import Job
-from observer import Observer
+from observer import GameUI
 from play import Play
 from study import Study
 from sport import Sport
 
 creature = Factory().create_creature("Tom")
-creature.add_observer(Observer())
+creature.add_observer(GameUI())
 
 def rules():
     creature.notify("rule")
