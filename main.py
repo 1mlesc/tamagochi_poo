@@ -3,13 +3,13 @@ import questionary
 
 from food import Food
 from job import Job
-from observer import GameUI
+from observer import Observer
 from play import Play
 from study import Study
 from sport import Sport
 
 creature = Factory().create_creature("Tom")
-creature.add_observer(GameUI())
+creature.add_observer(Observer())
 
 def rules():
     creature.notify("rule")
@@ -62,16 +62,16 @@ can_die = False
 #Boucle du jeu
 rules()
 while creature.is_alive():
-    j = 1
+    j = 9
     while j != 11:
         #Paiement du loyer lorsqu'on est adulte ou vieux
         if creature.state == adult or creature.state == old:
-            creature.rent(200)
+            creature.rent(400)
         #Vérification de la santé de la créature, si elle est trop basse, elle meurt
         if can_die == True:
             creature.show_status()
             creature.die()
-        if creature.state == baby or kid or adult or old and creature.happiness < 15 or creature.health < 15 or creature.hunger > 85:
+        if creature.state == (baby or kid or adult or old) and creature.happiness < 15 or creature.health < 15 or creature.hunger > 85:
             print("Votre créature n'est pas au meilleur de sa forme, à la fin de la journée, elle pourrait en mourir !")
             can_die = True
         else:
